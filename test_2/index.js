@@ -12,10 +12,15 @@
  * @returns  {Object[]}
  */
 module.exports = function test2() {
-  let results;
+  const jsonUtils = require("../utils/jsonUtils");
+  // Reads json data from file
+  let jsonData = jsonUtils.parseFromFile("./test_2/test_data.json");
 
-  // Write your code here.  The pre-written lines above and below are just suggestions, feel free to delete
-  // them and start fresh.
+  // Filters initial data (faster than adding example field to all json objects then filtering)
+  let filteredData = jsonData.filter((person) => {
+    return person["last_name"] == "Simpson";
+  });
 
-  return results;
+  // Adds example field to filtered data
+  return jsonUtils.addExampleField(filteredData);
 };
